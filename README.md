@@ -2,7 +2,7 @@
 Maggie P2P encrypted IM module
 
 ## Introduction
-Maggie APP has a built-in encrypted IM module, which is based on PKI encryption mechanism and third-party IM service provided by *Easemob*. This project contains correlative iOS APP code.
+Maggie APP has a built-in encrypted IM module, which is based on PKI encryption mechanism and third-party IM service provided by *Easemob*. This project contains correlative object-C code.
 
 ## Architecture
 As a social platform with attributes of strong authentication and high privacy, Maggie has designed an **encrypted IM mechanism** to fully protect user’s privacy. 
