@@ -1,0 +1,57 @@
+//
+//  MaggieDating.pch
+//  MaggieDating
+//
+//  Created by 邓琼 on 2017/11/16.
+//  Copyright © 2017年 com.maggie.social.MaggieDating. All rights reserved.
+//
+
+#ifdef __OBJC__
+
+#ifndef MaggieDating_pch
+#define MaggieDating_pch
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import <AFNetworking.h>
+#import <Masonry.h>
+#import "UIView+HUD.h"
+
+#define kScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+#define kDeviceVersion [[UIDevice currentDevice].systemVersion floatValue]
+
+
+/** RGB颜色宏 */
+#define Hex(rgbValue) ([UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0])
+#define mainColor [UIColor colorWithRed:255/255.0 green:230/255.0 blue:0.0 alpha:1.0]
+
+
+/** 测试阶段输出log，发布时不输出 */
+#ifdef DEBUG
+#define DLog(...) NSLog(__VA_ARGS__)
+#else
+#define DLog(...)
+#endif
+
+#define WK(weakSelf) __weak __typeof(self) weakSelf = self;
+
+
+/** 环信 */
+//#import <Hyphenate/Hyphenate.h>
+#import <EaseUI.h>
+#define hyphenteKey @"1175171024178778#maggie"
+#define hyphenteCert @"MaggieDatingTest_dev"
+#define DEMO_CALL 1
+
+#define kAESMark @"//encryptInfoByAes//"
+
+
+/** 服务器地址 */
+#define requestURL @"http://192.168.1.115:8080/" //测试地址
+
+
+#endif /* MaggieDating_pch */
+
+#endif 
