@@ -2,8 +2,8 @@
 //  UIApplication+ActivityViewController.h
 //  PM
 //
-//  Created by 邓琼 on 2016/12/20.
-//  Copyright © 2016年 dq. All rights reserved.
+//  Created by wushengran on 2017/12/20.
+//  Copyright © 2017年 dq. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

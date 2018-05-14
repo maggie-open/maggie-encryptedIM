@@ -2,8 +2,8 @@
 //  UIImage+FontImage.m
 //  PJ_b2b
 //
-//  Created by 邓琼 on 16/6/20.
-//  Copyright © 2016年 dq. All rights reserved.
+//  Created by wushengran on 18/3/20.
+//  Copyright © 2018年 dq. All rights reserved.
 //
 
 #import "UIImage+FontImage.h"
