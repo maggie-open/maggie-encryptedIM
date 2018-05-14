@@ -2,8 +2,8 @@
 //  NSString+md5.h
 //  PJ_b2b
 //
-//  Created by 邓琼 on 16/6/21.
-//  Copyright © 2016年 dq. All rights reserved.
+//  Created by wushengran on 18/3/21.
+//  Copyright © 2018年 dq. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

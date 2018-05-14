@@ -17,6 +17,17 @@
     return [phoneTest evaluateWithObject:self];
 }
 
+- (BOOL)isValidatePwd {
+    NSString*pwdRegex=@"^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{6,16}";
+    NSPredicate*pwdTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",pwdRegex];
+    return [pwdTest evaluateWithObject:self];
+}
+
+- (BOOL)isValidateName {
+    NSString*nameRegex=@"[a-zA-Z\u4e00-\u9fa5][a-zA-Z0-9\u4e00-\u9fa5]+";
+    NSPredicate*nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
+    return [nameTest evaluateWithObject:self];
+}
 
 - (BOOL)isValidateEmail {
     NSString*emailRegex=@"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
@@ -28,18 +39,6 @@
     NSString*numRegex=@"^[0-9]+$";
     NSPredicate*numTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", numRegex];
     return [numTest evaluateWithObject:self];
-}
-
-- (BOOL)isValidatePwd {
-    NSString*pwdRegex=@"^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{6,16}";
-    NSPredicate*pwdTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",pwdRegex];
-    return [pwdTest evaluateWithObject:self];
-}
-
-- (BOOL)isValidateName {
-    NSString*nameRegex=@"[a-zA-Z\u4e00-\u9fa5][a-zA-Z0-9\u4e00-\u9fa5]+";
-    NSPredicate*nameTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
-    return [nameTest evaluateWithObject:self];
 }
 
 - (BOOL)isValidateFloatNum {

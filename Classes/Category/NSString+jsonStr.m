@@ -2,11 +2,21 @@
 //  NSString+jsonStr.m
 //  PJ_b2b
 //
-//  Created by 邓琼 on 16/6/24.
-//  Copyright © 2016年 dq. All rights reserved.
+//  Created by wushengran on 18/3/24.
+//  Copyright © 2018年 dq. All rights reserved.
 //
 
 #import "NSString+jsonStr.h"
+
++ (NSString*)JSONStringWith:(NSObject *)data {
+    NSError *error = nil;
+    NSData *result = [NSJSONSerialization dataWithJSONObject:data
+                                                options:kNilOptions error:&error];
+    if (error){
+        return nil;
+    }
+    return [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+}
 
 @implementation NSString (jsonStr)
 - (id)JSONValue {
@@ -18,13 +28,5 @@
     }
     return result;
 }
-+ (NSString*)JSONStringWith:(NSObject *)data {
-    NSError *error = nil;
-    NSData *result = [NSJSONSerialization dataWithJSONObject:data
-                                                options:kNilOptions error:&error];
-    if (error){
-        return nil;
-    }
-    return [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
-}
+
 @end
