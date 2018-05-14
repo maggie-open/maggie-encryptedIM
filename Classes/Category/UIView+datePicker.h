@@ -2,8 +2,8 @@
 //  UIView+datePicker.h
 //  test
 //
-//  Created by 邓琼 on 16/8/2.
-//  Copyright © 2016年 dq. All rights reserved.
+//  Created by wushengran on 18/1/2.
+//  Copyright © 2018年 dq. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

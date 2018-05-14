@@ -10,6 +10,20 @@
 
 @implementation UIApplication (ActivityViewController)
 
+- (UIViewController *)activityViewController {
+    __block UIWindow *normalWindow = [self.delegate window];
+    if (normalWindow.windowLevel != UIWindowLevelNormal) {
+        [self.windows enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.windowLevel == UIWindowLevelNormal) {
+                normalWindow = obj;
+                *stop        = YES;
+            }
+        }];
+    }
+    
+    return [self p_nextTopForViewController:normalWindow.rootViewController];
+}
+
 - (UIViewController *)p_nextTopForViewController:(UIViewController *)inViewController {
     while (inViewController.presentedViewController) {
         inViewController = inViewController.presentedViewController;
@@ -24,20 +38,6 @@
     } else {
         return inViewController;
     }
-}
-
-- (UIViewController *)activityViewController {
-    __block UIWindow *normalWindow = [self.delegate window];
-    if (normalWindow.windowLevel != UIWindowLevelNormal) {
-        [self.windows enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.windowLevel == UIWindowLevelNormal) {
-                normalWindow = obj;
-                *stop        = YES;
-            }
-        }];
-    }
-    
-    return [self p_nextTopForViewController:normalWindow.rootViewController];
 }
 
 @end

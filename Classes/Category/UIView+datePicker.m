@@ -2,7 +2,7 @@
 //  UIView+datePicker.m
 //  test
 //
-//  Created by 邓琼 on 16/8/2.
+//  Created by wushengran on 18/1/2.
 //  Copyright © 2016年 dq. All rights reserved.
 //
 
@@ -23,6 +23,16 @@ static const void *strFormatterKey = &strFormatterKey;
 - (UIView *)datePickerView {
     return objc_getAssociatedObject(self, datePickerViewKey);
 }
+
+- (NSString *)strFormatter {
+    return objc_getAssociatedObject(self, strFormatterKey);
+}
+- (void)setDateFormatter:(NSString *)dateFormatter {
+    objc_setAssociatedObject(self, dateFormatterKey, dateFormatter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (NSString *)dateFormatter {
+    return objc_getAssociatedObject(self, dateFormatterKey);
+
 - (void)setDatePicker:(UIDatePicker *)datePicker {
     objc_setAssociatedObject(self, datePickerKey, datePicker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
@@ -39,14 +49,6 @@ static const void *strFormatterKey = &strFormatterKey;
 - (void)setStrFormatter:(NSString *)strFormatter {
     objc_setAssociatedObject(self, strFormatterKey, strFormatter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-- (NSString *)strFormatter {
-    return objc_getAssociatedObject(self, strFormatterKey);
-}
-- (void)setDateFormatter:(NSString *)dateFormatter {
-    objc_setAssociatedObject(self, dateFormatterKey, dateFormatter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-- (NSString *)dateFormatter {
-    return objc_getAssociatedObject(self, dateFormatterKey);
 }
 
 
@@ -66,6 +68,7 @@ static const void *strFormatterKey = &strFormatterKey;
     lowerView.backgroundColor = [UIColor colorWithRed:1.0 green:0.98 blue:0.98 alpha:1];
     lowerView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     lowerView.layer.borderWidth = 0.5;
+
     [self.datePickerView addSubview:lowerView];
     
     UIButton *cancle = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 40)];
@@ -86,14 +89,10 @@ static const void *strFormatterKey = &strFormatterKey;
     self.datePicker.maximumDate = maxDate;
     self.datePicker.backgroundColor = [UIColor whiteColor];
     self.datePicker.layer.borderColor = [UIColor lightGrayColor].CGColor;
-   self.datePicker.layer.borderWidth = 0.5;
+    self.datePicker.layer.borderWidth = 0.5;
     [lowerView addSubview:self.datePicker];
     
     [self.window addSubview:self.datePickerView];
-}
-
-- (void)popDatePickerView {
-    [self.datePickerView removeFromSuperview];
 }
 
 
@@ -105,6 +104,10 @@ static const void *strFormatterKey = &strFormatterKey;
     [dateFormatter setDateFormat:self.strFormatter];
     NSString *dateStr = [dateFormatter stringFromDate:selected];
     self.completionHandler(dateStrShow, dateStr);
+    [self.datePickerView removeFromSuperview];
+}
+
+- (void)popDatePickerView {
     [self.datePickerView removeFromSuperview];
 }
 
