@@ -23,16 +23,6 @@ static const void *strFormatterKey = &strFormatterKey;
 - (UIView *)datePickerView {
     return objc_getAssociatedObject(self, datePickerViewKey);
 }
-
-- (NSString *)strFormatter {
-    return objc_getAssociatedObject(self, strFormatterKey);
-}
-- (void)setDateFormatter:(NSString *)dateFormatter {
-    objc_setAssociatedObject(self, dateFormatterKey, dateFormatter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-- (NSString *)dateFormatter {
-    return objc_getAssociatedObject(self, dateFormatterKey);
-
 - (void)setDatePicker:(UIDatePicker *)datePicker {
     objc_setAssociatedObject(self, datePickerKey, datePicker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
@@ -49,6 +39,14 @@ static const void *strFormatterKey = &strFormatterKey;
 - (void)setStrFormatter:(NSString *)strFormatter {
     objc_setAssociatedObject(self, strFormatterKey, strFormatter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+- (NSString *)strFormatter {
+    return objc_getAssociatedObject(self, strFormatterKey);
+}
+- (void)setDateFormatter:(NSString *)dateFormatter {
+    objc_setAssociatedObject(self, dateFormatterKey, dateFormatter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (NSString *)dateFormatter {
+    return objc_getAssociatedObject(self, dateFormatterKey);
 }
 
 
@@ -95,6 +93,10 @@ static const void *strFormatterKey = &strFormatterKey;
     [self.window addSubview:self.datePickerView];
 }
 
+- (void)popDatePickerView {
+    [self.datePickerView removeFromSuperview];
+}
+
 
 - (void)pickDate {
     NSDate *selected = [self.datePicker date];
@@ -104,10 +106,6 @@ static const void *strFormatterKey = &strFormatterKey;
     [dateFormatter setDateFormat:self.strFormatter];
     NSString *dateStr = [dateFormatter stringFromDate:selected];
     self.completionHandler(dateStrShow, dateStr);
-    [self.datePickerView removeFromSuperview];
-}
-
-- (void)popDatePickerView {
     [self.datePickerView removeFromSuperview];
 }
 
