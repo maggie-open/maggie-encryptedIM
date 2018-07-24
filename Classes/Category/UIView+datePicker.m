@@ -93,11 +93,6 @@ static const void *strFormatterKey = &strFormatterKey;
     [self.window addSubview:self.datePickerView];
 }
 
-- (void)popDatePickerView {
-    [self.datePickerView removeFromSuperview];
-}
-
-
 - (void)pickDate {
     NSDate *selected = [self.datePicker date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -109,5 +104,8 @@ static const void *strFormatterKey = &strFormatterKey;
     [self.datePickerView removeFromSuperview];
 }
 
+- (void)popDatePickerView {
+    [self.datePickerView removeFromSuperview];
+}
 
 @end
