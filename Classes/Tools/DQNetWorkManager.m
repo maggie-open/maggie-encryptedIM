@@ -44,6 +44,7 @@
 
 /** 下载文件 */
 + (void)downloadFileWithOption:(NSDictionary *)paramDic withURL:(NSString*)url savedPath:(NSString*)savedPath downloadSuccess:(void (^)(NSString *filePath))success downloadFailure:(void (^)(NSError *error))failure {
+
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -62,9 +63,9 @@
     
 }
 
-
 /** post请求 */
 +(void)sendPostRequestWithUrl:(NSString *)urlStr parameters:(NSDictionary *)params success:(void (^)(id))successBlock failure:(void (^)(NSError *))failureBlock {
+
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.timeoutInterval = 30;
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"text/plain", @"text/json", @"text/javascript", @"application/json", nil];
