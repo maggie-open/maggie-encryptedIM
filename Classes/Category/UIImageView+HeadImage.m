@@ -13,8 +13,6 @@
 
 #import "UIImageView+HeadImage.h"
 
-//#import "UserProfileManager.h"
-
 @implementation UIImageView (HeadImage)
 
 - (void)imageWithUsername:(NSString *)username placeholderImage:(UIImage*)placeholderImage
