@@ -48,8 +48,10 @@
 }
 
 - (BOOL)isValidateIDNum{
+
     NSString *value = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSInteger length = 0;
+
     if (!value) {
         return NO;
     }else {
