@@ -24,7 +24,19 @@
         failureBlock(error);
     }];
 }
-
+/** post请求 */
++(void)sendPostRequestWithUrl:(NSString *)urlStr parameters:(NSDictionary *)params success:(void (^)(id))successBlock failure:(void (^)(NSError *))failureBlock {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer.timeoutInterval = 30;
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"text/plain", @"text/json", @"text/javascript", @"application/json", nil];
+    //请求头中加token
+    [manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"JWT"] forHTTPHeaderField:@"x-access-token"];
+    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        successBlock(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failureBlock(error);
+    }];
+}
 /** 上传照片 */
 + (void)sendPOSTWithUrl:(NSString *)urlStr parameters:(NSDictionary *)params data:(NSData *)imgData success:(void(^)(id responseObject))successBlock failure:(void(^)(NSError *error))failureBlock{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -44,7 +56,6 @@
 
 /** 下载文件 */
 + (void)downloadFileWithOption:(NSDictionary *)paramDic withURL:(NSString*)url savedPath:(NSString*)savedPath downloadSuccess:(void (^)(NSString *filePath))success downloadFailure:(void (^)(NSError *error))failure {
-
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     NSURLRequest * request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -60,22 +71,6 @@
         }
     }];
     [downloadTask resume];
-    
 }
 
-/** post请求 */
-+(void)sendPostRequestWithUrl:(NSString *)urlStr parameters:(NSDictionary *)params success:(void (^)(id))successBlock failure:(void (^)(NSError *))failureBlock {
-
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer.timeoutInterval = 30;
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"text/plain", @"text/json", @"text/javascript", @"application/json", nil];
-    //请求头中加token
-    [manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"JWT"] forHTTPHeaderField:@"x-access-token"];
-    [manager POST:urlStr parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        successBlock(responseObject);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        failureBlock(error);
-    }];
-    
-}
 @end
